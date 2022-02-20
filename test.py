@@ -104,9 +104,7 @@ class TestCredentialandUser(unittest.TestCase):
         self.new_user.save_user()
         test_user = User("Test","user") # new User
         test_user.save_user()
-
         found_user = User.find_by_user("Test")
-
         self.assertEqual(found_user.user_password,test_user.user_password)
 
     def test_find_credential_by_app_name(self):
@@ -117,10 +115,20 @@ class TestCredentialandUser(unittest.TestCase):
         self.new_credential.save_credential()
         test_credential = Credential("Snapchat","Test","user") # new credential
         test_credential.save_credential()
-
         found_credential = Credential.find_by_app("Snapchat")
-
         self.assertEqual(found_credential.credential_password,test_credential.credential_password)
        
+    def test_user_exists(self):
+        """
+        test to check if we can return a Boolean  if we cannot find the user.
+        """
 
+        self.new_user.save_user()
+        test_user = User("Test","user") # new user
+        test_user.save_user()
 
+        user_exists = User.user_exist("Test","user")
+
+        self.assertTrue(user_exists)
+
+   
