@@ -72,6 +72,31 @@ class TestCredentialandUser(unittest.TestCase):
             self.new_user.delete_user()# Deleting a user object
             self.assertEqual(len(User.user_list),1)
 
+    def test_delete_User(self):
+
+        """
+        test_delete_user to test if we can remove a user from our user list
+        """
+        self.new_user.save_user()
+        test_user = User("Test","user") # new user
+        test_user.save_user()
+
+        self.new_user.delete_user()# Deleting a user object
+        self.assertEqual(len(User.user_list),1)
+
+    def test_delete_Credential(self):
+
+        """
+        test_delete_credential to test if we can remove a credential from our credential list
+        """
+        self.new_credential.save_credential()
+        test_credential = Credential("Twitter","Test","user") # new credential
+        test_credential.save_credential()
+
+        self.new_credential.delete_credential()# Deleting a credential object
+        self.assertEqual(len(Credential.credential_list),1)
+
+
        
 
 
