@@ -38,7 +38,7 @@ class User:
         user_exists takes in a string and finds if the user being searched exists.
         """
         for user in cls.user_list:
-            if user.username == user_name and user.userpassword==user_password:
+            if user.user_name == user_name and user.user_password==user_password:
                 return True
         return False
 
