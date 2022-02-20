@@ -33,12 +33,12 @@ class User:
                 return user
 
     @classmethod
-    def user_exist(cls,string):
+    def user_exist(cls,user_name,user_password):
         """
         user_exists takes in a string and finds if the user being searched exists.
         """
         for user in cls.user_list:
-            if user.username == string:
+            if user.username == user_name and user.userpassword==user_password:
                 return True
         return False
 
