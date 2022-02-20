@@ -1,6 +1,3 @@
-import imp
-
-
 import random
 import string
 class Credential:
@@ -47,5 +44,25 @@ class Credential:
             if credential.app_name == app_name and credential.credential_user_name == credential_user_name and credential.credential_password == credential_password:
                 return True
         return False
+
+    @staticmethod
+    def passwordGenerator(passLength):
+        '''
+        method that generates a random password for the user
+        '''
+        random_num = string.ascii_letters + string.digits
+        password = ''.join((random.choice(random_num) for i in range(passLength)))
+        return password
+
+    @classmethod
+    def display_credentials(cls):
+        """
+        Added method to display credentials
+        """
+        return cls.credential_list
+
+    
+
+    
 
     
