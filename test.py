@@ -126,9 +126,18 @@ class TestCredentialandUser(unittest.TestCase):
         self.new_user.save_user()
         test_user = User("Test","user") # new user
         test_user.save_user()
-
         user_exists = User.user_exist("Test","user")
-
         self.assertTrue(user_exists)
+
+    def test_credential_exists(self):
+        """
+        test to check if we can return a Boolean  if we cannot find the credential.
+        """
+
+        self.new_credential.save_credential()
+        test_credential = Credential("Snapchat","Test","user") # new credential
+        test_credential.save_credential()
+        credential_exists = Credential.credential_exists("Snapchat","Test","user")
+        self.assertTrue(credential_exists)
 
    
