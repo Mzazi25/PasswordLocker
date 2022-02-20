@@ -62,15 +62,15 @@ class TestCredentialandUser(unittest.TestCase):
         self.assertEqual(len(Credential.credential_list),2)
 
     def test_delete_User(self):
-            """
-            test_delete_user to test if we can remove a user from our user list
-            """
-            self.new_user.save_user()
-            test_user = User("Test","user") # new user
-            test_user.save_user()
+        """
+        test_delete_user to test if we can remove a user from our user list
+        """
+        self.new_user.save_user()
+        test_user = User("Test","user") # new user
+        test_user.save_user()
 
-            self.new_user.delete_user()# Deleting a user object
-            self.assertEqual(len(User.user_list),1)
+        self.new_user.delete_user()# Deleting a user object
+        self.assertEqual(len(User.user_list),1)
 
     def test_delete_User(self):
 
@@ -96,7 +96,31 @@ class TestCredentialandUser(unittest.TestCase):
         self.new_credential.delete_credential()# Deleting a credential object
         self.assertEqual(len(Credential.credential_list),1)
 
+    def test_find_user_by_user_name(self):
+        """
+        test to check if we can find a user by user name and display information
+        """
 
+        self.new_user.save_user()
+        test_user = User("Test","user") # new User
+        test_user.save_user()
+
+        found_user = User.find_by_user("Test")
+
+        self.assertEqual(found_user.user_password,test_user.user_password)
+
+    def test_find_credential_by_app_name(self):
+        """
+        test to check if we can find a credential by app name and display information
+        """
+
+        self.new_credential.save_credential()
+        test_credential = Credential("Snapchat","Test","user") # new credential
+        test_credential.save_credential()
+
+        found_credential = Credential.find_by_app("Snapchat")
+
+        self.assertEqual(found_credential.credential_password,test_credential.credential_password)
        
 
 
