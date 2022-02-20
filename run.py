@@ -104,8 +104,10 @@ def main():
                                     print ('\n')
                                     print(f"New Account {user_name} {user_password} created proceed to Sign in")
                                     print ('\n')
+                                    break
                                 else:
                                     print("Password too short!")
+                                    continue
                             
                         
 
@@ -138,20 +140,25 @@ def main():
 
                                                  save_credential(create_credential(app_name,credential_user_name,credential_password))
                                                  print(f"New Account on {app_name} for {user_name}")
+                                                 break
                                              else:
                                                  print("Please check fields")
+                                                 continue
                                      elif short_code == 'fi':
                                          print("Find the credential your Application")
                                          print("Input your Application")
                                          search_input= input()
                                          if check_existing_credential(search_input):
                                              print(f"\You have an account with us")
+                                             break
                                          else:
                                              print("The credentials doesn't exist")
+                                             continue
 
                                      elif short_code == "dc":
                                          print("Application name:")
                                          app_name= input()
+                                         
 
                                          if check_existing_credential(app_name):
                                              while True:
@@ -165,11 +172,13 @@ def main():
                                          if len(Credential.credential_list) >=1:
                                              display_credential
                                              print("\nHERE ARE ALL YOUR CREDENTIALS")
+                                             
                                              for credential in display_credential():
                                                  print(f'\Application Name: {credential.app_name} \n Username: {credential.credential_user_name} \n Password: {credential.credential_password}')
                                                  continue
                                              else:
                                                  print ("You don't have any credentials")
+                                                 continue
                                      elif short_code == "ex":
                                          print("\nYou have successfully logged out..\n")
                                          break
@@ -186,6 +195,7 @@ def main():
                              delete_user(delete_user(user_name))
                              print("The user has been deleted")
                              continue
+        
 
                 elif short_code == "ex":
                             print("Bye .......")
