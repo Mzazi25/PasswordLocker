@@ -35,5 +35,12 @@ class TestCredentialandUser(unittest.TestCase):
         self.new_user.save_user()
         self.assertEqual(len(User.user_list),1)
 
+    def test_save_credential(self):
+        """
+        test_save_user method checks if the credential objects is saved into the credential_list
+        """
+        self.new_credential.save_credential()
+        self.assertEqual(len(Credential.credential_list),1)
+
 
 
