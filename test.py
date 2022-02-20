@@ -146,4 +146,11 @@ class TestCredentialandUser(unittest.TestCase):
         """
 
         self.assertEqual(User.display_user(),User.user_list)
+
+    def test_display_all_credential(self):
+        """
+        method that returns a list of all credentials saved
+        """
+
+        self.assertEqual(Credential.display_credentials(),Credential.credential_list)
    
