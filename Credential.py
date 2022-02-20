@@ -39,12 +39,12 @@ class Credential:
                 return credential
 
     @classmethod
-    def credential_exists(cls,string):
+    def credential_exists(cls,app_name,credential_user_name,credential_password):
         """
         Method that takes in a string and returns a boolian if the credential exists
         """
         for credential in cls.credential_list:
-            if credential.credential_name == string:
+            if credential.app_name == app_name and credential.credential_user_name == credential_user_name and credential.credential_password == credential_password:
                 return True
         return False
 
