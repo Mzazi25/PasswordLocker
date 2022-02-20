@@ -10,3 +10,9 @@ class TestCredentialandUser(unittest.TestCase):
         Credential.credential_list = []
         User.user_list =[]
     
+    def setUp(self):
+        """
+        Set up method to run before each test cases.
+        """
+        self.new_user= User("Caleb","Langat90")
+        self.new_credential= Credential("Twitter","Mzazi","Langat25")
