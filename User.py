@@ -1,6 +1,3 @@
-from this import d
-
-
 class User:
     """
     Created a class that generates new instances for Users
@@ -9,7 +6,7 @@ class User:
 
     def __init__(self,user_name,user_password):
         """
-        Def_Init to define user_names and user_passwords
+        def_init to define user_names and user_passwords
         """
         self.user_name=user_name
         self.user_password=user_password
@@ -27,12 +24,12 @@ class User:
         User.user_list.remove(self)
 
     @classmethod
-    def find_by_user(cls,string):
+    def find_by_user(cls,user_name):
         """
         Method that takes in a string and returns the user's details that matches the account
         """
         for user in cls.user_list:
-            if user.user_name == string:
+            if user.user_name == user_name:
                 return user
 
     @classmethod
@@ -44,4 +41,4 @@ class User:
             if user.username == string:
                 return True
         return False
-        
+
