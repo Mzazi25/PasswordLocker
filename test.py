@@ -43,14 +43,24 @@ class TestCredentialandUser(unittest.TestCase):
         self.assertEqual(len(Credential.credential_list),1)
 
     def test_save_multiple_user(self):
-            '''
-            test_save_multiple_user to check if we can save multiple user
-            objects to our user_list
-            '''
-            self.new_user.save_user()
-            test_user = User("Test","user") # new user
-            test_user.save_user()
-            self.assertEqual(len(User.user_list),2)
+        """
+        test_save_multiple_user to check if we can save multiple user
+        objects to our user_list
+        """
+        self.new_user.save_user()
+        test_user = User("Test","user") # new user
+        test_user.save_user()
+        self.assertEqual(len(User.user_list),2)
+    
+    def test_save_multiple_credential(self):
+        """
+        test_save_multiple_credentials to check if we can save multiple credentials objects to our credential_list
+        """
+        self.new_credential.save_credential()
+        test_credential = Credential("Instagram","Test","user") # new user
+        test_credential.save_credential()
+        self.assertEqual(len(Credential.credential_list),2)
 
+       
 
 
