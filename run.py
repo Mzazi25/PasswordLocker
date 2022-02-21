@@ -1,18 +1,21 @@
 #!/usr/bin/env python3.9
 from user import User
 from credential import Credential
-def create_user(user_name,user_password):
+import string
+import random
+
+def create_user(username,userpassword):
     """
     Function to create User
     """
-    new_user = User(user_name,user_password),
+    new_user = User(username,userpassword),
     return new_user
 
-def create_credential(appName,credentialName,credentialPassword):
+def create_credential(app_name,credential_user_name,credential_password):
     """
     Function to create Credential
     """
-    new_credential = Credential(appName,credentialName,credentialPassword),
+    new_credential = Credential(app_name,credential_user_name,credential_password),
     return new_credential
 
 def save_user(self):
@@ -51,17 +54,26 @@ def find_credential(self):
     '''
     return Credential.find_by_app(self)
 
-def check_existing_user(user_name):
+def check_existing_user(username,userpassword):
     '''
     Function that check if a user exists and returns a Boolean
     '''
-    return User.user_exist(user_name)
+    return User.find_by_user(username,userpassword)
+@classmethod
+def password_gen(length):
+    """
+    generate random password
+    """
+    letters = string.ascii_lowercase
+    result = ''.join((random.sample(letters, length)))  
+    auto_gen_password= result
+    return auto_gen_password
 
-def check_existing_credential(credential):
+def check_existing_credential(app_name,credential_user_name,credential_password):
     '''
     Function that check if a credential exists and returns a Boolean
     '''
-    return Credential.credential_exists(credential)
+    return Credential.credential_exists(app_name,credential_user_name,credential_password)
 
 def display_user():
     '''
@@ -77,9 +89,9 @@ def display_credential():
 
 def main():
     print("Hello Welcome to your Password Locker. What is your name?")
-    user_name = input()
+    username = input()
 
-    print(f"Hello {user_name}. what would you like to do?")
+    print(f"Hello {username}. what would you like to do?")
     print('\n')
 
     while True:
@@ -93,16 +105,30 @@ def main():
                             print("-"*10)
 
                             print ("Username ....")
-                            user_name = input()
+                            username = input()
 
                             print("Password ...")
                             print(" "*4 + "*the password must be 6 characters or longer*")
+                            print("Do you want your password Generated? Y/N")
+                            generate_pass =input().upper()
+                            if generate_pass == "Y":
+                                password_length = int(input("What length would you like your password to be,i.e 6,8..."))
+                                letters = string.ascii_lowercase
+                                auto_gen_password = ("".join(random.choice(letters) for i in range(password_length)))
+                                
+                                print("\u001b[35;1mYour generated password is: \u001b[0m",auto_gen_password)
+                                new_user_password = auto_gen_password
+                                print("input your generate password to proceed")
+                            else:
+                                print("Input your password")
+
+
                             while True:
-                                user_password = input()
-                                if len(user_password) >=6:
-                                    save_user(create_user(user_name,user_password)) # create and save new contact.
+                                userpassword = input()
+                                if len(userpassword) >=6:
+                                    save_user(create_user(username,userpassword)) # create and save new contact.
                                     print ('\n')
-                                    print(f"New Account {user_name} {user_password} created proceed to Sign in")
+                                    print(f"New Account {username} {userpassword} created proceed to Sign in")
                                     print ('\n')
                                     break
                                 else:
@@ -115,36 +141,77 @@ def main():
 
                             print("Please sign in to the account")
                             print ("Username ....")
-                            user_name = input()
+                            username = input()
 
                             print("Password ...")
 
                             print(" "*4 + "*the password must be 6 characters or longer*")
-                            user_password = input()
+                            print("Do you want your password Generated? Y/N")
+                            generate_pass =input().upper()
+                            if generate_pass == "Y":
+                                password_length = int(input("What length would you like your password to be,i.e 6,8..."))
+                                letters = string.ascii_lowercase
+                                auto_gen_password = ("".join(random.choice(letters) for i in range(password_length)))
+                                
+                                print("\u001b[35;1mYour generated password is: \u001b[0m",auto_gen_password)
+                                new_user_password = auto_gen_password
+                                print("input your generate password to proceed")
+                            else:
+                                print("Input your password")
+                            while True:
+                                userpassword = input()
+                                if len(userpassword) >=6:
+                                    save_user(create_user(username,userpassword)) # create and save new contact.
+                                    print ('\n')
+                                    print(f"Signed in as {username} ")
+                                    print ('\n')
+                                    break
+                                else:
+                                    print("Password too short!")
+                                    continue
 
-                            if check_existing_user(user_name,user_password):
+                            print("Use these short codes : nc - create a new credential, fi - Find a Credential , dc -delete a credential, sa- See all credential, ex -exit the app ")
 
-                                print("\nLog in successful")
-                                print("What would you like to do?")
-                                while True:
-                                     print("Use these short codes : nc - create a new credential, fi - Find a Credential , dc -delete a credential, sa- See all credential, ex -exit the app ")
-                                     if short_code == 'nc':
-                                         while True:
-                                             print("Application Name")
-                                             print("-"*10)
-                                             app_name= input()
-                                             if app_name != "":
-                                                 print("what is your desired username on {app_name}" and "Password")
-                                                 credential_user_name = input()
-                                                 credential_password = input()
+                            if short_code == 'nc':
+                                if short_code == 'nc':
+                                    print("Create New Credential")
+                                    print("-"*10)
 
-                                                 save_credential(create_credential(app_name,credential_user_name,credential_password))
-                                                 print(f"New Account on {app_name} for {user_name}")
-                                                 break
-                                             else:
-                                                 print("Please check fields")
-                                                 continue
-                                     elif short_code == 'fi':
+                                    print ("Credential name ....")
+                                    username = input()
+
+                                    print("Password ...")
+                                    print(" "*4 + "*the password must be 6 characters or longer*")
+                                    print("Do you want your password Generated? Y/N")
+                                    generate_pass =input().upper()
+                                    if generate_pass == "Y":
+                                        password_length = int(input("What length would you like your password to be,i.e 6,8..."))
+                                        letters = string.ascii_lowercase
+                                        auto_gen_password = ("".join(random.choice(letters) for i in range(password_length)))
+                                
+                                        print("\u001b[35;1mYour generated password is: \u001b[0m",auto_gen_password)
+                                        new_user_password = auto_gen_password
+                                        print("input your generate password to proceed")
+                                    else:
+                                        print("Input your password")
+
+
+                                        while True:
+                                            userpassword = input()
+                                            if len(userpassword) >=6:
+
+                                                save_user(create_user(username,userpassword)) # create and save new contact.
+                                                print ('\n')
+                                                print(f"New Account {username} {userpassword} created proceed to Sign in")
+                                                print ('\n')
+                                            break
+                                        else:
+                                            print("Password too short!")
+                                    continue
+
+                                
+                                 
+                            elif short_code == 'fi':
                                          print("Find the credential your Application")
                                          print("Input your Application")
                                          search_input= input()
@@ -155,12 +222,13 @@ def main():
                                              print("The credentials doesn't exist")
                                              continue
 
-                                     elif short_code == "dc":
-                                         print("Application name:")
-                                         app_name= input()
+                            elif short_code == "dc":
+
+                                            print("Application name:")
+                                            app_name= input()
                                          
 
-                                         if check_existing_credential(app_name):
+                                            if check_existing_credential(app_name):
                                              while True:
                                                  print("THIS WILL DELETE THE CREDENTIALS")
                                                  delete_credential = input()
@@ -168,7 +236,7 @@ def main():
                                                  print("The credentials have been deleted")
                                                  continue
 
-                                     elif short_code == "sa":
+                            elif short_code == "sa":
                                          if len(Credential.credential_list) >=1:
                                              display_credential
                                              print("\nHERE ARE ALL YOUR CREDENTIALS")
@@ -179,12 +247,12 @@ def main():
                                              else:
                                                  print ("You don't have any credentials")
                                                  continue
-                                     elif short_code == "ex":
+                            elif short_code == "ex":
                                          print("\nYou have successfully logged out..\n")
                                          break
-                                     else:
+                            else:
                                          print("You did not select a valid option")
-                                         continue
+                                         
                 elif short_code =="du":
                     print("Input User Name:")
                     user_name= input()
@@ -199,7 +267,7 @@ def main():
 
                 elif short_code == "ex":
                             print("Bye .......")
-                            break
+                            
                 else:
                             print("I really didn't get that. Please use the short codes")
 

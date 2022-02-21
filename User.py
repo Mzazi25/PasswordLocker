@@ -4,12 +4,12 @@ class User:
     """
     user_list = [] #Empty Array to Store Users
 
-    def __init__(self,user_name,user_password):
+    def __init__(self,username,userpassword):
         """
         def_init to define user_names and user_passwords
         """
-        self.user_name=user_name
-        self.user_password=user_password
+        self.username = username
+        self.userpassword = userpassword
     
     def save_user(self):
         """
@@ -24,23 +24,23 @@ class User:
         User.user_list.remove(self)
 
     @classmethod
-    def find_by_user(cls,user_name):
+    def find_by_user(cls,username):
         """
         Method that takes in a string and returns the user's details that matches the account
         """
         for user in cls.user_list:
-            if user.user_name == user_name:
+            if user.username ==username:
                 return user
 
     @classmethod
-    def user_exist(cls,user_name,user_password):
+    def user_exist(cls,username):
         """
         user_exists takes in a string and finds if the user being searched exists.
         """
         for user in cls.user_list:
-            if user.user_name == user_name and user.user_password==user_password:
-                return True
-        return False
+
+            if user.username == username:
+                return user
 
     @classmethod
     def display_user(cls):

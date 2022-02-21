@@ -22,8 +22,8 @@ class TestCredentialandUser(unittest.TestCase):
         """
         test_init method to test if the object is initialized well
         """
-        self.assertEqual(self.new_user.user_name,"Caleb")
-        self.assertEqual(self.new_user.user_password,"Langat90")
+        self.assertEqual(self.new_user.username,"Caleb")
+        self.assertEqual(self.new_user.userpassword,"Langat90")
         self.assertEqual(self.new_credential.app_name,"Twitter")
         self.assertEqual(self.new_credential.credential_user_name,"Mzazi")
         self.assertEqual(self.new_credential.credential_password,"Langat25")
@@ -105,7 +105,7 @@ class TestCredentialandUser(unittest.TestCase):
         test_user = User("Test","user") # new User
         test_user.save_user()
         found_user = User.find_by_user("Test")
-        self.assertEqual(found_user.user_password,test_user.user_password)
+        self.assertEqual(found_user.username,test_user.username)
 
     def test_find_credential_by_app_name(self):
         """
